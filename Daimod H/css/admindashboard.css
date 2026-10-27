@@ -1,0 +1,739 @@
+
+/* =========================================
+   DAIMON HEALTH CARE DASHBOARD
+   Main stylesheet: style.css
+========================================= */
+
+/* 1. GLOBAL SETTINGS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #087f8c;
+    --primary-dark: #05616b;
+    --primary-light: #e6f5f5;
+    --secondary: #d4af37;
+    --background: #f4f7fb;
+    --white: #ffffff;
+    --text-dark: #243447;
+    --text-light: #718096;
+    --border: #e2e8f0;
+    --success: #1f9d68;
+    --warning: #e6a23c;
+    --danger: #e05252;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--background);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* 2. GENERAL ELEMENTS */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.3;
+}
+
+h2 {
+    margin-bottom: 18px;
+    font-size: 21px;
+}
+
+p {
+    color: var(--text-light);
+}
+
+/* 3. DASHBOARD LAYOUT */
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 4. SIDEBAR */
+.sidebar {
+    width: 250px;
+    background-color: var(--white);
+    border-right: 1px solid var(--border);
+    padding: 25px 18px;
+    flex-shrink: 0;
+    /* position: fixed; */
+}
+
+/* .sidebarSupport {
+    width: 250px;
+    background-color: var(--white);
+    border-right: 1px solid var(--border);
+    padding: 25px 18px;
+    flex-shrink: 0;
+} */
+
+.logo {
+    color: var(--primary);
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.logo span {
+    color: var(--secondary);
+}
+
+.sidebar p {
+    font-size: 12px;
+    margin-bottom: 35px;
+}
+
+.sidebar h3 {
+    font-size: 12px;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar nav a {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 8px;
+    color: var(--text-light);
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* 5. MAIN CONTENT */
+.main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+/* 6. TOP BAR */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.topbar h1 {
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.topbar p {
+    font-size: 14px;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-profile img,
+.profile-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.admin-profile h3 {
+    font-size: 14px;
+}
+
+.admin-profile p {
+    font-size: 12px;
+}
+
+/* 7. DASHBOARD STATISTICS */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background-color: var(--white);
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+
+.stat-card h3 {
+    color: var(--text-light);
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 12px;
+}
+
+.stat-card h2 {
+    color: var(--text-dark);
+    font-size: 29px;
+    margin-bottom: 8px;
+    margin-left: 0px;
+}
+
+.stat-card p {
+    font-size: 12px;
+}
+
+.stat-card .stat-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+/* 8. CONTENT SECTIONS */
+.content-section {
+    background-color: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+    scroll-margin-top: 20px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    margin-bottom: 0;
+}
+
+.section-heading a {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.section-heading a:hover {
+    text-decoration: underline;
+}
+
+/* 9. BUTTONS */
+.btn {
+    display: inline-block;
+    border: none;
+    border-radius: 7px;
+    padding: 11px 17px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+.btn-secondary:hover {
+    background-color: #d1eeee;
+}
+
+.btn-gold {
+    background-color: var(--secondary);
+    color: #243447;
+}
+
+.btn-gold:hover {
+    background-color: #c19b24;
+}
+
+/* 10. APPOINTMENTS TABLE */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+thead {
+    background-color: #f8fafc;
+}
+
+th,
+td {
+    padding: 15px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+}
+
+th {
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+td {
+    color: var(--text-dark);
+}
+
+tbody tr:hover {
+    background-color: #f8fbfd;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* 11. STATUS LABELS */
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.status-pending {
+    background-color: #fff3d6;
+    color: #946200;
+}
+
+.status-confirmed {
+    background-color: #dff7e9;
+    color: #147647;
+}
+
+.status-cancelled {
+    background-color: #ffe5e5;
+    color: #b42323;
+}
+
+.status-completed {
+    background-color: #e5edff;
+    color: #3158a6;
+}
+
+/* 12. HOSPITAL SERVICES */
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    padding: 22px;
+    background-color: #fbfdff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+.service-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.service-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 15px;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border-radius: 10px;
+    font-size: 23px;
+}
+
+.service-card h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.service-card p {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.service-card a {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* 13. APPOINTMENT BOOKING FORM */
+.appointment-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d7dee8;
+    border-radius: 7px;
+    outline: none;
+    background-color: var(--white);
+    color: var(--text-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(8, 127, 140, 0.12);
+}
+
+.form-group textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+/* 14. PATIENT LIST */
+.patient-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.patient-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.patient-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.patient-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.patient-info h3 {
+    font-size: 14px;
+}
+
+.patient-info p {
+    font-size: 12px;
+}
+
+.patient-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.patient-date {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+/* 15. REPORTS */
+.reports-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.report-card {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background-color: #fbfdff;
+}
+
+.report-card h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.report-card p {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+/* 16. SETTINGS */
+.settings-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.settings-form .form-actions {
+    grid-column: 1 / -1;
+}
+
+/* 17. FOOTER */
+.footer {
+    text-align: center;
+    padding: 20px 10px;
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.footer span {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* 18. RESPONSIVE DESIGN: TABLETS */
+@media (max-width: 1100px) {
+    .sidebar {
+        width: 220px;
+    }
+
+    .sideSupport {
+        width: 220px;
+    }
+
+    .main-content {
+        padding: 22px;
+    }
+
+    .stats-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .services-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* 19. RESPONSIVE DESIGN: SMALL TABLETS */
+@media (max-width: 800px) {
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 18px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar p {
+        margin-bottom: 18px;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sidebar nav a {
+        padding: 9px 12px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .services-container,
+    .reports-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* 20. RESPONSIVE DESIGN: MOBILE PHONES */
+@media (max-width: 550px) {
+    .main-content {
+        padding: 14px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .topbar h1 {
+        font-size: 23px;
+    }
+
+    .stats-container,
+    .services-container,
+    .reports-container,
+    .appointment-form,
+    .settings-form {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        padding: 18px;
+    }
+
+    .content-section {
+        padding: 16px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .form-group.full-width,
+    .form-actions,
+    .settings-form .form-actions {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    .sidebar nav {
+        gap: 5px;
+    }
+
+    .sidebar nav a {
+        font-size: 12px;
+    }
+
+    .patient-item {
+        align-items: flex-start;
+    }
+}
+
+/* 21. ACCESSIBILITY */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--secondary);
+    outline-offset: 3px;
+}
+
+/* 22. REDUCE ANIMATIONS WHEN REQUESTED */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

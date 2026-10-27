@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daimon Health Care | Patient Dashboard</title>
+
+    <link rel="stylesheet" href="css/user-dashboard.css">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <a href="#home" class="brand">
+            <span class="brand-icon">✚</span>
+            <span>Daimon <small>Health Care</small></span>
+        </a>
+
+        <div class="patient-mini-profile">
+            <div class="patient-avatar">JD</div>
+
+            <div>
+                <h3>John Doe</h3>
+                <p>Patient Account</p>
+            </div>
+        </div>
+
+        <p class="menu-heading">MAIN MENU</p>
+
+        <nav class="sidebar-menu">
+
+            <a href="#home" class="menu-link active">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a href="#book-appointment" class="menu-link">
+                <span>▣</span> Book Appointment
+            </a>
+
+            <a href="#appointments" class="menu-link">
+                <span>▤</span> My Appointments
+            </a>
+
+            <a href="#pharmacy" class="menu-link">
+                <span>✚</span> Buy Medicines
+            </a>
+
+            <a href="#orders" class="menu-link">
+                <span>🛒</span> My Orders
+            </a>
+
+            <a href="#records" class="menu-link">
+                <span>▧</span> Medical Records
+            </a>
+
+            <a href="#notifications" class="menu-link">
+                <span>♧</span> Notifications
+                <span class="notification-count">2</span>
+            </a>
+
+            <p class="menu-heading">ACCOUNT</p>
+
+            <a href="#settings" class="menu-link">
+                <span>⚙</span> Settings
+            </a>
+
+            <a href="login.html" class="menu-link logout-link">
+                <span>↪</span> Logout
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="help-icon">?</div>
+            <h4>Need assistance?</h4>
+            <p>Our support team is here to help.</p>
+            <a href="mailto:support@example.com">Contact Support</a>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+                <p class="date-label">PATIENT PORTAL</p>
+                <h1>My Dashboard</h1>
+            </div>
+
+            <div class="topbar-right">
+
+                <a href="#notifications" class="notification-button"
+                   aria-label="View notifications">
+                    ♧
+                    <span></span>
+                </a>
+
+                <div class="topbar-profile">
+                    <div class="small-avatar">JD</div>
+
+                    <div>
+                        <h3>John Doe</h3>
+                        <p>Patient</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- HOME -->
+        <section id="home" class="dashboard-section">
+
+            <div class="welcome-banner">
+
+                <div class="welcome-content">
+                    <p class="welcome-label">WELCOME BACK</p>
+
+                    <h2>Hello, John! 👋</h2>
+
+                    <p>
+                        Manage your healthcare, book appointments,
+                        and order medicines from one convenient place.
+                    </p>
+
+                    <a href="#book-appointment" class="button button-gold">
+                        Book an Appointment
+                    </a>
+                </div>
+
+                <div class="welcome-symbol">✚</div>
+
+            </div>
+
+
+            <!-- SUMMARY CARDS -->
+            <div class="summary-grid">
+
+                <article class="summary-card">
+                    <div class="summary-icon blue">▣</div>
+                    <p>Upcoming Appointments</p>
+                    <h2>2</h2>
+                    <a href="#appointments">View appointments →</a>
+                </article>
+
+                <article class="summary-card">
+                    <div class="summary-icon green">✚</div>
+                    <p>Medicine Orders</p>
+                    <h2>1</h2>
+                    <a href="#orders">Track orders →</a>
+                </article>
+
+                <article class="summary-card">
+                    <div class="summary-icon gold">▧</div>
+                    <p>Medical Records</p>
+                    <h2>4</h2>
+                    <a href="#records">View records →</a>
+                </article>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+            <div class="content-card">,
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Quick Actions</h2>
+                        <p>What would you like to do today?</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+
+                    <a href="#book-appointment" class="quick-action">
+                        <div class="action-icon">▣</div>
+                        <h3>Book Appointment</h3>
+                        <p>Schedule a hospital visit.</p>
+                    </a>
+
+                    <a href="#pharmacy" class="quick-action">
+                        <div class="action-icon">✚</div>
+                        <h3>Order Medicines</h3>
+                        <p>Browse available medicines.</p>
+                    </a>
+
+                    <a href="#records" class="quick-action">
+                        <div class="action-icon">▧</div>
+                        <h3>Medical Records</h3>
+                        <p>View your health documents.</p>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT APPOINTMENTS -->
+            <div class="content-card" id="appointments">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>My Appointments</h2>
+                        <p>Review your scheduled hospital visits.</p>
+                    </div>
+
+                    <a href="#book-appointment" class="text-link">
+                        + New Appointment
+                    </a>
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Department</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>General Consultation</td>
+                                <td>20 Oct 2026</td>
+                                <td>10:00 AM</td>
+                                <td>
+                                    <span class="status confirmed">
+                                        Confirmed
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Laboratory</td>
+                                <td>25 Oct 2026</td>
+                                <td>09:30 AM</td>
+                                <td>
+                                    <span class="status pending">
+                                        Pending
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BOOK APPOINTMENT -->
+        <section id="book-appointment" class="dashboard-section">
+
+            <div class="page-heading">
+                <p class="date-label">HEALTHCARE SERVICES</p>
+                <h2>Book an Appointment</h2>
+                <p>Request a visit with one of our hospital departments.</p>
+            </div>
+
+            <div class="content-card">
+
+                <form action="#" method="post" class="dashboard-form">
+
+                    <div class="form-group">
+                        <label for="patient-name">Full Name</label>
+                        <input
+                            type="text"
+                            id="patient-name"
+                            name="patient_name"
+                            value="John Doe"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patient-email">Email Address</label>
+                        <input
+                            type="email"
+                            id="patient-email"
+                            name="email"
+                            placeholder="you@example.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">Select Department</label>
+
+                        <select id="department" name="department" required>
+                            <option value="">Choose a department</option>
+                            <option>General Consultation</option>
+                            <option>Maternity</option>
+                            <option>Laboratory Tests</option>
+                            <option>Pharmacy</option>
+                            <option>Paediatrics</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="doctor">Preferred Doctor</label>
+
+                        <select id="doctor" name="doctor">
+                            <option value="">Any available doctor</option>
+                            <option>Dr. James Anderson</option>
+                            <option>Dr. Sarah Williams</option>
+                            <option>Dr. Michael Brown</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appointment-date">Preferred Date</label>
+
+                        <input
+                            type="date"
+                            id="appointment-date"
+                            name="appointment_date"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appointment-time">Preferred Time</label>
+
+                        <select
+                            id="appointment-time"
+                            name="appointment_time"
+                            required
+                        >
+                            <option value="">Choose a time</option>
+                            <option>09:00 AM</option>
+                            <option>10:00 AM</option>
+                            <option>11:00 AM</option>
+                            <option>12:00 PM</option>
+                            <option>02:00 PM</option>
+                            <option>03:00 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="reason">Reason for Appointment</label>
+
+                        <textarea
+                            id="reason"
+                            name="reason"
+                            rows="4"
+                            placeholder="Briefly describe the reason for your visit."
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <button type="submit" class="button button-primary">
+                            Submit Appointment Request
+                        </button>
+                    </div>
+
+                </form>
+
+                <p class="form-note">
+                    Submitting this form will not save an appointment until
+                    a secure booking backend is connected.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PHARMACY -->
+        <section id="pharmacy" class="dashboard-section">
+
+            <div class="page-heading">
+                <p class="date-label">DAIMON PHARMACY</p>
+                <h2>Buy Medicines</h2>
+                <p>Browse the pharmacy catalogue.</p>
+            </div>
+
+            <div class="pharmacy-notice">
+                <strong>Important:</strong>
+                Medicines requiring a prescription must only be supplied
+                after the prescription has been verified by an authorized
+                pharmacist.
+            </div>
+
+            <div class="medicine-grid">
+
+                <article class="medicine-card">
+                    <div class="medicine-icon">✚</div>
+                    <span class="medicine-category">Pain Relief</span>
+                    <h3>Paracetamol</h3>
+                    <p>Example listing. Select the appropriate strength
+                       and pack size with a pharmacist.</p>
+                    <div class="medicine-bottom">
+                        <span class="price">Price on request</span>
+                        <button type="button" class="button button-primary"
+                                disabled>
+                            Add to Cart
+                        </button>
+                    </div>
+                </article>
+
+                <article class="medicine-card">
+                    <div class="medicine-icon">✚</div>
+                    <span class="medicine-category">First Aid</span>
+                    <h3>Antiseptic Solution</h3>
+                    <p>Example listing. Check the product label and
+                       instructions before use.</p>
+                    <div class="medicine-bottom">
+                        <span class="price">Price on request</span>
+                        <button type="button" class="button button-primary"
+                                disabled>
+                            Add to Cart
+                        </button>
+                    </div>
+                </article>
+
+                <article class="medicine-card">
+                    <div class="medicine-icon">✚</div>
+                    <span class="medicine-category">Health Supplies</span>
+                    <h3>Medical Bandages</h3>
+                    <p>Example listing for basic medical supplies.</p>
+                    <div class="medicine-bottom">
+                        <span class="price">Price on request</span>
+                        <button type="button" class="button button-primary"
+                                disabled>
+                            Add to Cart
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+
+            <p class="form-note">
+                These are demonstration products, not verified stock.
+                Ordering and payment are disabled until a pharmacy system
+                is connected.
+            </p>
+
+        </section>
+
+
+        <!-- ORDERS -->
+        <section id="orders" class="dashboard-section">
+
+            <div class="page-heading">
+                <p class="date-label">ORDER MANAGEMENT</p>
+                <h2>My Orders</h2>
+                <p>Check the status of your medicine orders.</p>
+            </div>
+
+            <div class="content-card">
+
+                <div class="empty-state">
+                    <div class="empty-icon">🛒</div>
+                    <h3>Your orders will appear here</h3>
+                    <p>
+                        Once you place an order through the connected
+                        pharmacy system, you can track its status here.
+                    </p>
+                    <a href="#pharmacy" class="button button-primary">
+                        Browse Pharmacy
+                    </a>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MEDICAL RECORDS -->
+        <section id="records" class="dashboard-section">
+
+            <div class="page-heading">
+                <p class="date-label">PERSONAL HEALTH</p>
+                <h2>My Medical Records</h2>
+                <p>Access records made available to your patient account.</p>
+            </div>
+
+            <div class="content-card">
+
+                <div class="empty-state">
+                    <div class="empty-icon">▧</div>
+                    <h3>Your medical records</h3>
+                    <p>
+                        Authorized medical documents will appear here
+                        when the hospital record system is connected.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- NOTIFICATIONS -->
+        <section id="notifications" class="dashboard-section">
+
+            <div class="page-heading">
+                <p class="date-label">UPDATES</p>
+                <h2>Notifications</h2>
+                <p>Important messages and account updates.</p>
+            </div>
+
+            <div class="content-card">
+
+                <article class="notification-item">
+                    <div class="notification-dot"></div>
+
+                    <div>
+                        <h3>Appointment Reminder</h3>
+                        <p>
+                            This area will display reminders after
+                            notifications are connected.
+                        </p>
+                        <small>Example notification</small>
+                    </div>
+                </article>
+
+                <article class="notification-item">
+                    <div class="notification-dot gold-dot"></div>
+
+                    <div>
+                        <h3>Pharmacy Updates</h3>
+                        <p>
+                            Order updates will appear here when the
+                            pharmacy system is connected.
+                        </p>
+                        <small>Example notification</small>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- SETTINGS -->
+        <section id="settings" class="dashboard-section">
+
+            <div class="page-heading">
+                <p class="date-label">ACCOUNT MANAGEMENT</p>
+                <h2>Dashboard Settings</h2>
+                <p>Review your profile and account preferences.</p>
+            </div>
+
+            <div class="content-card">
+
+                <form action="#" method="post" class="dashboard-form">
+
+                    <div class="form-group">
+                        <label for="settings-name">Full Name</label>
+                        <input
+                            type="text"
+                            id="settings-name"
+                            name="full_name"
+                            value="John Doe"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="settings-email">Email Address</label>
+                        <input
+                            type="email"
+                            id="settings-email"
+                            name="email"
+                            placeholder="you@example.com"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="settings-phone">Phone Number</label>
+                        <input
+                            type="tel"
+                            id="settings-phone"
+                            name="phone"
+                            placeholder="+234..."
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="settings-language">Language</label>
+
+                        <select id="settings-language" name="language">
+                            <option>English</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <button type="submit" class="button button-primary">
+                            Save Changes
+                        </button>
+                    </div>
+
+                </form>
+
+                <p class="form-note">
+                    Profile changes will not be saved until a secure
+                    backend is connected.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+            <p>
+                &copy; 2026 Daimon Health Care.
+                Your health matters to us.
+            </p>
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>

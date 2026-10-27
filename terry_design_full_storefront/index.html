@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shop stylish everyday footwear at Terry Design Footwear.">
+  <title>Terry Design Footwear — Walk Your Style</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="announcement">NEW SEASON, NEW STEPS <span>—</span> FIND YOUR EVERYDAY PAIR</div>
+
+  <header class="header">
+    <a class="brand" href="#home" aria-label="Terry Design Footwear home">
+      <span class="brand-icon">TD</span>
+      <span class="brand-text">TERRY DESIGN<small>FOOTWEAR</small></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="nav" id="mainNav">
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#story">Our Story</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="searchToggle" aria-label="Open search">⌕</button>
+      <button class="cart-button" id="openCart" aria-label="Open shopping cart">Bag <span id="cartCount">0</span></button>
+    </div>
+  </header>
+
+  <div class="search-bar" id="searchBar">
+    <label for="searchInput">Search footwear</label>
+    <input id="searchInput" type="search" placeholder="Try “slides” or “sneakers”">
+    <button id="clearSearch" type="button">Clear</button>
+  </div>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-rule"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span></span> TERRY DESIGN FOOTWEAR</p>
+        <h1>Walk your<br><em>own way.</em></h1>
+        <p class="hero-desc">Distinctive footwear for everyday life. Find your comfort, own your style, and make every step count.</p>
+        <div class="hero-buttons">
+          <a class="button gold-button" href="#shop">Shop the collection <span>↗</span></a>
+          <a class="under-link" href="#story">Our story</a>
+        </div>
+      </div>
+      <div class="hero-bottom"><span>01 / 03</span><span class="tiny-line"></span><span>THE EVERYDAY EDIT</span></div>
+      <div class="round-stamp">WALK<strong>YOUR</strong>STYLE</div>
+    </section>
+
+    <section class="promises">
+      <div><span class="promise-symbol">✳</span><p><strong>Comfort first</strong><small>Made for everyday movement</small></p></div>
+      <div><span class="promise-symbol">◇</span><p><strong>Style that speaks</strong><small>Express yourself with every step</small></p></div>
+      <div><span class="promise-symbol">↗</span><p><strong>Carefully selected</strong><small>Thoughtful details, lasting style</small></p></div>
+    </section>
+
+    <section class="shop section" id="shop">
+      <div class="section-top">
+        <div><p class="eyebrow dark-eyebrow">THE TERRY EDIT</p><h2>Find your <em>stride.</em></h2><p class="section-subtitle">Everyday favourites, selected for your style.</p></div>
+        <div class="filters" role="group" aria-label="Filter products">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="slides">Slides</button>
+          <button class="filter" data-filter="sandals">Sandals</button>
+          <button class="filter" data-filter="sneakers">Sneakers</button>
+        </div>
+      </div>
+
+      <div class="product-grid" id="productGrid">
+        <article class="product-card" data-category="slides" data-name="Classic Olive Slides" data-price="12500" data-image="https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=900&q=85">
+          <div class="product-image"><span class="badge">BESTSELLER</span><img src="https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=900&q=85" alt="Classic slides" loading="lazy"><button class="quick-add" data-add>+ Add to bag</button></div>
+          <div class="product-info"><div><h3>Classic Olive Slides</h3><p>Everyday essential</p></div><strong>₦12,500</strong></div>
+        </article>
+        <article class="product-card" data-category="sandals" data-name="Urban Strap Sandals" data-price="18000" data-image="https://images.unsplash.com/photo-1562273138-f46be4ebdf33?auto=format&fit=crop&w=900&q=85">
+          <div class="product-image"><span class="badge badge-light">NEW ARRIVAL</span><img src="https://images.unsplash.com/photo-1562273138-f46be4ebdf33?auto=format&fit=crop&w=900&q=85" alt="Urban sandals" loading="lazy"><button class="quick-add" data-add>+ Add to bag</button></div>
+          <div class="product-info"><div><h3>Urban Strap Sandals</h3><p>Easy-going confidence</p></div><strong>₦18,000</strong></div>
+        </article>
+        <article class="product-card" data-category="sandals" data-name="Signature Sandals" data-price="16500" data-image="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=85">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=85" alt="Signature footwear" loading="lazy"><button class="quick-add" data-add>+ Add to bag</button></div>
+          <div class="product-info"><div><h3>Signature Sandals</h3><p>Made to stand out</p></div><strong>₦16,500</strong></div>
+        </article>
+        <article class="product-card" data-category="sneakers" data-name="Daily Street Sneakers" data-price="28500" data-image="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=85">
+          <div class="product-image"><span class="badge">CUSTOMER FAVOURITE</span><img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=85" alt="Everyday sneakers" loading="lazy"><button class="quick-add" data-add>+ Add to bag</button></div>
+          <div class="product-info"><div><h3>Daily Street Sneakers</h3><p>Casual, all-day comfort</p></div><strong>₦28,500</strong></div>
+        </article>
+        <article class="product-card" data-category="slides" data-name="Essential Black Slides" data-price="11000" data-image="https://images.unsplash.com/photo-1562273138-f46be4ebdf33?auto=format&fit=crop&w=900&q=85">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1562273138-f46be4ebdf33?auto=format&fit=crop&w=900&q=85" alt="Black everyday slides" loading="lazy"><button class="quick-add" data-add>+ Add to bag</button></div>
+          <div class="product-info"><div><h3>Essential Black Slides</h3><p>Simple. Versatile. Yours.</p></div><strong>₦11,000</strong></div>
+        </article>
+        <article class="product-card" data-category="sneakers" data-name="Weekend Low Tops" data-price="32000" data-image="https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=900&q=85">
+          <div class="product-image"><span class="badge badge-light">JUST IN</span><img src="https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=900&q=85" alt="Low-top sneakers" loading="lazy"><button class="quick-add" data-add>+ Add to bag</button></div>
+          <div class="product-info"><div><h3>Weekend Low Tops</h3><p>Relaxed weekend style</p></div><strong>₦32,000</strong></div>
+        </article>
+      </div>
+      <p class="no-results" id="noResults" hidden>No styles matched your search. Try another name or category.</p>
+    </section>
+
+    <section class="story" id="story">
+      <div class="story-photo"><img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=1200&q=85" alt="Footwear arranged in a studio" loading="lazy"><span>MADE FOR THE JOURNEY</span></div>
+      <div class="story-copy"><p class="eyebrow">OUR POINT OF VIEW</p><h2>Good design.<br><em>Better steps.</em></h2><p>Terry Design Footwear is built around a simple idea: what you wear should feel as good as it looks. We celebrate practical comfort, confident style, and the little details that make a pair your own.</p><a class="button outline-button" href="#contact">Get in touch <span>→</span></a></div>
+    </section>
+
+    <section class="newsletter section">
+      <div><p class="eyebrow dark-eyebrow">STAY IN THE LOOP</p><h2>Good things are <em>coming.</em></h2><p>Join our list for collection updates and special offers.</p></div>
+      <form id="newsletterForm"><label class="visually-hidden" for="newsletterEmail">Email address</label><input id="newsletterEmail" type="email" placeholder="Your email address" required><button type="submit">Join the list ↗</button></form>
+      <p class="form-message" id="newsletterMessage" aria-live="polite"></p>
+    </section>
+
+    <section class="contact section" id="contact"><div><p class="eyebrow dark-eyebrow">NEED A HAND?</p><h2>Let's find your <em>fit.</em></h2><p>Questions about sizing, availability, or an order? Get in touch with us.</p></div><a class="button dark-button" href="mailto:hello@terrydesignfootwear.com">Contact the team <span>↗</span></a></section>
+  </main>
+
+  <footer class="footer"><a class="brand" href="#home"><span class="brand-icon">TD</span><span class="brand-text">TERRY DESIGN<small>FOOTWEAR</small></span></a><p>Walk your style. Every single day.</p><span>© 2026 Terry Design Footwear</span></footer>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
+    <div class="drawer-header"><div><p class="eyebrow dark-eyebrow">YOUR SELECTION</p><h2>Your bag <span id="drawerCount">(0)</span></h2></div><button id="closeCart" class="close-button" aria-label="Close cart">×</button></div>
+    <div class="cart-items" id="cartItems"><p class="empty-cart">Your bag is empty. Find a pair you love.</p></div>
+    <div class="cart-footer"><div class="subtotal"><span>Subtotal</span><strong id="cartSubtotal">₦0</strong></div><p>Delivery fees are calculated when your order is confirmed.</p><button class="checkout-button" id="checkoutButton">Continue to checkout ↗</button><small class="demo-note">Demo storefront — checkout is not connected to a payment service.</small></div>
+  </aside>
+
+  <div class="modal-backdrop" id="checkoutModal">
+    <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <button class="close-button modal-close" id="closeCheckout" aria-label="Close checkout">×</button>
+      <p class="eyebrow dark-eyebrow">NEXT STEP</p><h2 id="checkoutTitle">Checkout preview</h2>
+      <p>This is a front-end demonstration. No payment will be taken and no order will be sent.</p>
+      <form id="checkoutForm">
+        <label for="customerName">Full name</label><input id="customerName" required placeholder="Your full name">
+        <label for="customerEmail">Email address</label><input id="customerEmail" type="email" required placeholder="you@example.com">
+        <label for="customerAddress">Delivery address</label><textarea id="customerAddress" required rows="3" placeholder="Street, area, city"></textarea>
+        <button class="checkout-button" type="submit">Preview order summary</button>
+      </form>
+      <p id="checkoutMessage" class="form-message" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

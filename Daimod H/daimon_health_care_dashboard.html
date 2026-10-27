@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daimon Health Care | Admin Dashboard</title>
+<style>
+:root{
+  --navy:#083b68;--blue:#0755a0;--teal:#078b87;--mint:#e3f6f2;
+  --bg:#f3f7fb;--ink:#17324d;--muted:#718399;--line:#e2eaf1;
+  --white:#fff;--orange:#f3a42d;--red:#e95c70;--purple:#8960d9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.layout{min-height:100vh;display:grid;grid-template-columns:238px minmax(0,1fr)}
+.sidebar{background:linear-gradient(180deg,#083b68,#062e52);color:#fff;padding:22px 14px;display:flex;flex-direction:column;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;padding:2px 8px 20px;border-bottom:1px solid #ffffff25}
+.brand-mark{height:43px;width:43px;border-radius:12px;background:#fff;color:var(--blue);display:grid;place-items:center;font-size:22px;font-weight:800}
+.brand h1{font-size:19px;letter-spacing:1px}.brand small{display:block;color:#72ded1;letter-spacing:2px;font-size:10px}
+.nav-label{font-size:10px;letter-spacing:1.6px;color:#a8c7df;padding:0 12px 6px}
+.nav{display:grid;gap:5px}
+.nav button{border:0;background:transparent;color:#e8f2fa;text-align:left;padding:12px;border-radius:9px;display:flex;align-items:center;gap:12px;font-size:14px}
+.nav button:hover,.nav button.active{background:#087f8c;color:white}
+.nav .ico{width:20px;text-align:center;font-size:17px}
+.sidebar-note{margin-top:auto;background:#ffffff12;border:1px solid #ffffff1a;border-radius:12px;padding:14px;font-size:12px;color:#d6e8f5}
+.sidebar-note strong{display:block;font-size:14px;margin-bottom:5px;color:white}
+.main{min-width:0}
+.topbar{background:white;border-bottom:1px solid var(--line);padding:16px 26px;display:flex;align-items:center;gap:18px;justify-content:space-between;position:sticky;top:0;z-index:3}
+.search{max-width:490px;flex:1;position:relative}
+.search input{width:100%;border:1px solid var(--line);border-radius:9px;padding:11px 14px 11px 38px;background:#f8fbfd;outline-color:var(--teal)}
+.search span{position:absolute;left:13px;top:9px;color:var(--muted);font-size:18px}
+.top-actions{display:flex;align-items:center;gap:12px;font-size:13px}
+.avatar{height:38px;width:38px;border-radius:50%;display:grid;place-items:center;background:#d9eef8;color:var(--blue);font-weight:800}
+.content{padding:25px;max-width:1600px;margin:auto}
+.page-head{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.page-head h2{font-size:27px;color:var(--navy)}
+.page-head p{font-size:13px;color:var(--muted);margin-top:4px}
+.date-chip{font-size:12px;color:var(--muted);background:white;border:1px solid var(--line);padding:10px 12px;border-radius:8px}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:18px}
+.metric,.panel{background:white;border:1px solid var(--line);border-radius:13px;box-shadow:0 3px 12px #17324d05}
+.metric{padding:18px;display:flex;gap:13px;align-items:flex-start}
+.metric-icon{width:43px;height:43px;flex-shrink:0;border-radius:12px;display:grid;place-items:center;font-size:21px}
+.c-blue{background:#e2f1ff;color:#1684d6}.c-teal{background:#def7f0;color:#079b8b}.c-purple{background:#eee7ff;color:var(--purple)}.c-orange{background:#fff0d9;color:#df941c}
+.metric small{color:var(--muted);font-size:12px}.metric h3{font-size:27px;color:var(--navy);margin:5px 0 2px}.trend{font-size:11px;color:var(--teal)}
+.grid-two{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:16px;margin-bottom:18px}
+.panel{padding:18px;min-width:0}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+.panel-head h3{font-size:16px;color:var(--navy)}
+.panel-head button{background:transparent;border:0;color:var(--blue);font-size:12px;font-weight:700}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--muted)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
+.chart-wrap{width:100%;overflow:hidden}
+.chart{width:100%;height:auto;display:block}
+.dept-layout{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.donut{width:155px;height:155px;border-radius:50%;background:conic-gradient(#1684d6 0 39%,#079b8b 39% 60%,#8960d9 60% 78%,#f3a42d 78% 89%,#e95c70 89% 100%);position:relative;flex-shrink:0}
+.donut:after{content:"28\A Appointments";white-space:pre;position:absolute;inset:27px;border-radius:50%;background:white;display:grid;place-content:center;text-align:center;font-weight:700;color:var(--navy);font-size:20px}
+.dept-legend{flex:1;min-width:145px;display:grid;gap:12px;font-size:12px}
+.dept-row{display:flex;justify-content:space-between;gap:8px}.dept-row span:first-child{white-space:nowrap}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:12px;min-width:560px}
+th{text-align:left;color:var(--muted);background:#f8fafc;font-weight:600;padding:11px 10px}
+td{padding:12px 10px;border-top:1px solid var(--line)}
+.status{display:inline-block;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:700}
+.confirmed{background:#def7ef;color:#07846e}.pending{background:#fff1d9;color:#a86a00}.cancelled{background:#ffe4e8;color:#bd4053}
+.small-btn{border:1px solid #8bbde9;color:var(--blue);background:white;border-radius:7px;padding:6px 12px;font-size:11px}
+.small-btn:hover{background:#eef7ff}
+.lower-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,1fr);gap:16px;margin-bottom:18px}
+.quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quick{border:1px solid var(--line);background:#f9fcfe;border-radius:10px;padding:15px 10px;text-align:center;color:var(--navy);font-size:12px}
+.quick span{display:block;font-size:24px;color:var(--teal);margin-bottom:7px}
+.quick:hover{border-color:var(--teal);background:#effaf8}
+.info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.info-card{background:white;border:1px solid var(--line);border-radius:12px;padding:16px;font-size:12px;color:var(--muted)}
+.info-card strong{display:block;font-size:14px;color:var(--navy);margin-bottom:6px}
+.page-section{display:none}.page-section.active{display:block}
+.notice{background:#fff7e8;border:1px solid #f2d8a8;color:#77541b;border-radius:10px;padding:12px 14px;font-size:12px;margin-bottom:17px}
+.primary{background:var(--teal);border:0;color:white;padding:10px 14px;border-radius:8px;font-weight:700;font-size:13px}
+.primary:hover{background:var(--blue)}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field label{display:block;font-size:12px;font-weight:700;margin-bottom:6px}
+.field input,.field select{width:100%;padding:11px;border:1px solid var(--line);border-radius:8px;background:white;outline-color:var(--teal)}
+.form-actions{display:flex;gap:10px;margin-top:17px;flex-wrap:wrap}
+.empty{padding:25px;text-align:center;color:var(--muted);font-size:13px}
+.toast{position:fixed;bottom:20px;right:20px;background:#083b68;color:white;border-radius:9px;padding:13px 17px;box-shadow:0 8px 25px #0002;z-index:10;font-size:13px;display:none;max-width:340px}
+.mobile-menu{display:none;border:0;background:white;font-size:22px;color:var(--navy)}
+@media(max-width:1100px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-two,.lower-grid{grid-template-columns:1fr}}
+@media(max-width:720px){
+ .layout{grid-template-columns:1fr}.sidebar{display:none}.sidebar.open{display:flex;position:fixed;inset:0 auto 0 0;width:250px;z-index:5;overflow:auto}
+ .topbar{padding:12px 15px}.mobile-menu{display:block}.top-actions .user-label{display:none}.content{padding:16px}
+ .page-head h2{font-size:23px}.metrics{gap:10px}.metric{padding:13px;gap:9px}.metric h3{font-size:22px}.metric-icon{width:36px;height:36px}
+ .form-grid,.info-grid{grid-template-columns:1fr}.dept-layout{justify-content:center}
+}
+@media(max-width:390px){.metrics{grid-template-columns:1fr}.search input{font-size:12px}.topbar{gap:9px}}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">D+</div>
+      <div><h1>DAIMON</h1><small>HEALTH CARE</small></div>
+    </div>
+    <div>
+      <div class="nav-label">MAIN MENU</div>
+      <nav class="nav" aria-label="Main navigation">
+        <button class="active" data-page="dashboard"><span class="ico">⌂</span>Dashboard</button>
+        <button data-page="appointments"><span class="ico">▦</span>Appointments</button>
+        <button data-page="patients"><span class="ico">♙</span>Patients</button>
+        <button data-page="services"><span class="ico">✚</span>Services</button>
+        <button data-page="reports"><span class="ico">▥</span>Reports</button>
+        <button data-page="settings"><span class="ico">⚙</span>Settings</button>
+      </nav>
+    </div>
+    <div class="sidebar-note"><strong>DAIMON HEALTH CARE</strong>Your Health, Our Priority.<br><br>Admin dashboard prototype</div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="mobile-menu" id="menuToggle" aria-label="Toggle navigation">☰</button>
+      <div class="search"><span>⌕</span><input id="globalSearch" type="search" placeholder="Search appointments or patients..." aria-label="Search"></div>
+      <div class="top-actions"><span>🔔</span><div class="avatar">A</div><div class="user-label"><strong>Hospital Admin</strong><br><span style="color:var(--muted)">Administrator</span></div></div>
+    </header>
+
+    <div class="content">
+      <section class="page-section active" id="page-dashboard">
+        <div class="page-head"><div><h2>Dashboard</h2><p>Welcome back. Here's an overview of your hospital.</p></div><div class="date-chip" id="todayLabel">Today</div></div>
+        <div class="notice"><strong>Demo data:</strong> The names, totals, and appointments below are sample information. This prototype does not connect to a real hospital database.</div>
+        <div class="metrics">
+          <article class="metric"><div class="metric-icon c-blue">▦</div><div><small>Today's Appointments</small><h3 id="metricAppointments">28</h3><div class="trend">Appointment requests</div></div></article>
+          <article class="metric"><div class="metric-icon c-teal">♙</div><div><small>Total Patients</small><h3 id="metricPatients">842</h3><div class="trend">Sample total</div></div></article>
+          <article class="metric"><div class="metric-icon c-purple">⚗</div><div><small>Laboratory Tests</small><h3>356</h3><div class="trend">Sample monthly total</div></div></article>
+          <article class="metric"><div class="metric-icon c-orange">₦</div><div><small>Pharmacy Sales</small><h3>₦1.24m</h3><div class="trend">Sample monthly total</div></div></article>
+        </div>
+        <div class="grid-two">
+          <article class="panel">
+            <div class="panel-head"><h3>Appointments Overview</h3><div class="legend"><span><i class="dot" style="background:#079b8b"></i>Completed</span><span><i class="dot" style="background:#f3a42d"></i>Pending</span></div></div>
+            <div class="chart-wrap">
+              <svg class="chart" viewBox="0 0 600 220" role="img" aria-label="Illustrative weekly appointments chart">
+                <g stroke="#e8eef4" stroke-width="1"><path d="M45 25H580M45 65H580M45 105H580M45 145H580M45 185H580"/><path d="M45 25V185M135 25V185M225 25V185M315 25V185M405 25V185M495 25V185M580 25V185"/></g>
+                <g fill="#718399" font-size="11"><text x="15" y="189">0</text><text x="9" y="149">10</text><text x="9" y="109">20</text><text x="9" y="69">30</text><text x="9" y="29">40</text><text x="45" y="208">Mon</text><text x="132" y="208">Tue</text><text x="222" y="208">Wed</text><text x="312" y="208">Thu</text><text x="402" y="208">Fri</text><text x="492" y="208">Sat</text><text x="570" y="208">Sun</text></g>
+                <path d="M45 120 Q90 95 135 80 T225 100 T315 55 T405 120 T495 88 T580 65 L580 185 L45 185Z" fill="#079b8b" opacity=".12"/>
+                <path d="M45 120 Q90 95 135 80 T225 100 T315 55 T405 120 T495 88 T580 65" fill="none" stroke="#079b8b" stroke-width="3" stroke-linecap="round"/>
+                <path d="M45 155 Q90 145 135 150 T225 155 T315 130 T405 155 T495 145 T580 150" fill="none" stroke="#f3a42d" stroke-width="3" stroke-linecap="round"/>
+                <g fill="#079b8b"><circle cx="45" cy="120" r="4"/><circle cx="135" cy="80" r="4"/><circle cx="225" cy="100" r="4"/><circle cx="315" cy="55" r="4"/><circle cx="405" cy="120" r="4"/><circle cx="495" cy="88" r="4"/><circle cx="580" cy="65" r="4"/></g>
+              </svg>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h3>Appointments by Department</h3></div>
+            <div class="dept-layout"><div class="donut" aria-label="Illustrative department distribution"></div><div class="dept-legend">
+              <div class="dept-row"><span><i class="dot" style="background:#1684d6"></i>General consultation</span><strong>39%</strong></div>
+              <div class="dept-row"><span><i class="dot" style="background:#079b8b"></i>Maternity</span><strong>21%</strong></div>
+              <div class="dept-row"><span><i class="dot" style="background:#8960d9"></i>Laboratory</span><strong>18%</strong></div>
+              <div class="dept-row"><span><i class="dot" style="background:#f3a42d"></i>Pharmacy</span><strong>11%</strong></div>
+              <div class="dept-row"><span><i class="dot" style="background:#e95c70"></i>Paediatrics</span><strong>11%</strong></div>
+            </div></div>
+          </article>
+        </div>
+        <div class="lower-grid">
+          <article class="panel">
+            <div class="panel-head"><h3>Upcoming Appointments</h3><button data-goto="appointments">View all →</button></div>
+            <div class="table-wrap"><table><thead><tr><th>Time</th><th>Patient</th><th>Service</th><th>Status</th><th>Action</th></tr></thead><tbody id="dashboardAppointments"></tbody></table></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h3>Quick Actions</h3></div>
+            <div class="quick-grid">
+              <button class="quick" data-goto="appointments"><span>▦</span>New Appointment</button>
+              <button class="quick" id="addPatientQuick"><span>♙</span>Add Patient</button>
+              <button class="quick" data-goto="reports"><span>▥</span>View Reports</button>
+              <button class="quick" data-goto="services"><span>✚</span>View Services</button>
+            </div>
+          </article>
+        </div>
+        <div class="info-grid">
+          <div class="info-card"><strong>Hospital Information</strong><div>Location: Add verified address</div><div>Phone: Add official number</div><div>Email: Add official email</div></div>
+          <div class="info-card"><strong>Departments</strong><div>General consultation</div><div>Maternity · Laboratory</div><div>Pharmacy · Paediatrics</div></div>
+          <div class="info-card"><strong>Reminder</strong><div>Connect a secure backend and configure access controls before using real patient information.</div></div>
+        </div>
+      </section>
+
+      <section class="page-section" id="page-appointments">
+        <div class="page-head"><div><h2>Appointments</h2><p>Review and manage demo appointment requests.</p></div><button class="primary" id="newAppointmentBtn">+ New appointment</button></div>
+        <div class="panel" id="appointmentFormPanel" hidden style="margin-bottom:16px">
+          <div class="panel-head"><h3>Create appointment (demo)</h3><button id="closeAppointmentForm">Close ✕</button></div>
+          <form id="appointmentForm">
+            <div class="form-grid">
+              <div class="field"><label for="patientName">Patient name *</label><input id="patientName" required maxlength="100"></div>
+              <div class="field"><label for="patientPhone">Phone number *</label><input id="patientPhone" required type="tel" maxlength="30"></div>
+              <div class="field"><label for="patientService">Service *</label><select id="patientService" required><option value="">Choose service</option><option>General Consultation</option><option>Maternity</option><option>Laboratory</option><option>Pharmacy</option><option>Paediatrics</option></select></div>
+              <div class="field"><label for="patientDate">Date *</label><input id="patientDate" type="date" required></div>
+              <div class="field"><label for="patientTime">Time *</label><input id="patientTime" type="time" required></div>
+            </div>
+            <div class="form-actions"><button class="primary" type="submit">Add demo appointment</button><button type="reset" class="small-btn">Clear</button></div>
+          </form>
+        </div>
+        <article class="panel"><div class="panel-head"><h3>Appointment register</h3><span class="date-chip" id="appointmentCount">0 records</span></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Time</th><th>Patient</th><th>Phone</th><th>Service</th><th>Status</th><th>Action</th></tr></thead><tbody id="appointmentsTable"></tbody></table></div><div class="empty" id="appointmentEmpty" hidden>No appointments match your search.</div></article>
+      </section>
+
+      <section class="page-section" id="page-patients">
+        <div class="page-head"><div><h2>Patients</h2><p>Sample patient list for the dashboard prototype.</p></div><button class="primary" id="addPatientBtn">+ Add patient</button></div>
+        <div class="notice">Use fictional data only in this prototype. Real patient records require secure storage, authorised access, and appropriate privacy protections.</div>
+        <article class="panel"><div class="panel-head"><h3>Patient directory</h3><span class="date-chip">Sample records</span></div><div class="table-wrap"><table><thead><tr><th>Patient ID</th><th>Patient name</th><th>Phone</th><th>Last service</th><th>Record</th></tr></thead><tbody id="patientsTable"></tbody></table></div></article>
+      </section>
+
+      <section class="page-section" id="page-services">
+        <div class="page-head"><div><h2>Services</h2><p>Departments offered by Daimon Health Care.</p></div></div>
+        <div class="info-grid">
+          <div class="info-card"><strong>✚ General Consultation</strong>Medical consultations and assessments.</div>
+          <div class="info-card"><strong>♡ Maternity</strong>Maternal healthcare services.</div>
+          <div class="info-card"><strong>⚗ Laboratory</strong>Laboratory testing services.</div>
+          <div class="info-card"><strong>✚ Pharmacy</strong>Pharmacy and medication support.</div>
+          <div class="info-card"><strong>♡ Paediatrics</strong>Healthcare services for children.</div>
+        </div>
+      </section>
+
+      <section class="page-section" id="page-reports">
+        <div class="page-head"><div><h2>Reports</h2><p>Basic summary of the current demo data.</p></div><button class="primary" id="exportBtn">Export appointments CSV</button></div>
+        <div class="metrics">
+          <article class="metric"><div class="metric-icon c-blue">▦</div><div><small>Appointments in demo</small><h3 id="reportTotal">0</h3></div></article>
+          <article class="metric"><div class="metric-icon c-teal">✓</div><div><small>Confirmed</small><h3 id="reportConfirmed">0</h3></div></article>
+          <article class="metric"><div class="metric-icon c-orange">◷</div><div><small>Pending</small><h3 id="reportPending">0</h3></div></article>
+          <article class="metric"><div class="metric-icon c-purple">♙</div><div><small>Sample patients</small><h3 id="reportPatients">4</h3></div></article>
+        </div>
+        <article class="panel"><h3 style="color:var(--navy);margin-bottom:10px">About these reports</h3><p style="font-size:13px;color:var(--muted)">These figures are calculated from the sample records in this browser session. They are not real clinical or financial reports.</p></article>
+      </section>
+
+      <section class="page-section" id="page-settings">
+        <div class="page-head"><div><h2>Settings</h2><p>Basic branding and contact details for this mock-up.</p></div></div>
+        <article class="panel">
+          <div class="panel-head"><h3>Hospital details</h3></div>
+          <form id="settingsForm">
+            <div class="form-grid">
+              <div class="field"><label for="hospitalName">Hospital name</label><input id="hospitalName" value="Daimon Health Care" required></div>
+              <div class="field"><label for="hospitalTagline">Tagline</label><input id="hospitalTagline" value="Your Health, Our Priority"></div>
+              <div class="field"><label for="hospitalPhone">Official phone</label><input id="hospitalPhone" placeholder="Enter official phone number"></div>
+              <div class="field"><label for="hospitalEmail">Official email</label><input id="hospitalEmail" type="email" placeholder="Enter official email"></div>
+              <div class="field"><label for="hospitalLocation">Hospital location</label><input id="hospitalLocation" placeholder="Enter town/city and address"></div>
+              <div class="field"><label for="hospitalHours">Opening hours</label><input id="hospitalHours" placeholder="Enter verified opening hours"></div>
+            </div>
+            <div class="form-actions"><button class="primary" type="submit">Preview saved settings</button></div>
+            <p id="settingsMessage" role="status" style="margin-top:12px;font-size:13px;color:var(--teal)"></p>
+          </form>
+        </article>
+        <div class="notice" style="margin-top:16px">Settings are only held in this page session; no database or staff login is configured.</div>
+      </section>
+    </div>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const today = new Date();
+  const dateFmt = new Intl.DateTimeFormat('en-NG',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  $('todayLabel').textContent = dateFmt.format(today);
+  const isoToday = [today.getFullYear(),String(today.getMonth()+1).padStart(2,'0'),String(today.getDate()).padStart(2,'0')].join('-');
+  $('patientDate').min = isoToday;
+
+  let appointments = [
+    {id:1,date:isoToday,time:'09:00',name:'Chinedu Okafor',phone:'0800 000 0001',service:'General Consultation',status:'Confirmed'},
+    {id:2,date:isoToday,time:'09:30',name:'Ngozi Eze',phone:'0800 000 0002',service:'Maternity',status:'Confirmed'},
+    {id:3,date:isoToday,time:'10:00',name:'Ibrahim Musa',phone:'0800 000 0003',service:'Laboratory',status:'Pending'},
+    {id:4,date:isoToday,time:'11:00',name:'Blessing Adeyemi',phone:'0800 000 0004',service:'Paediatrics',status:'Confirmed'},
+    {id:5,date:isoToday,time:'12:00',name:'Uche Nwosu',phone:'0800 000 0005',service:'Pharmacy',status:'Pending'},
+    {id:6,date:isoToday,time:'13:30',name:'Fatima Lawal',phone:'0800 000 0006',service:'Maternity',status:'Confirmed'}
+  ];
+  let patients = [
+    {id:'DHC-001',name:'Amaka Johnson',phone:'0800 000 0011',service:'General Consultation'},
+    {id:'DHC-002',name:'Samuel Adebayo',phone:'0800 000 0012',service:'Maternity'},
+    {id:'DHC-003',name:'Zainab Mohammed',phone:'0800 000 0013',service:'Paediatrics'},
+    {id:'DHC-004',name:'Emeka Okeke',phone:'0800 000 0014',service:'Laboratory'}
+  ];
+  let nextId=7;
+  let query='';
+  function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function showToast(message){const t=$('toast');t.textContent=message;t.style.display='block';clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.style.display='none',3500);}
+  function prettyDate(s){if(!s)return '';const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d).toLocaleDateString('en-NG',{day:'2-digit',month:'short',year:'numeric'});}
+  function prettyTime(s){if(!s)return '';const [h,m]=s.split(':').map(Number);return new Date(2000,0,1,h,m).toLocaleTimeString('en-NG',{hour:'2-digit',minute:'2-digit',hour12:true});}
+  function statusBadge(s){const cl=s==='Confirmed'?'confirmed':s==='Pending'?'pending':'cancelled';return `<span class="status ${cl}">${escapeHtml(s)}</span>`;}
+  function render(){
+    const filtered=appointments.filter(a=>(a.name+' '+a.phone+' '+a.service+' '+a.status+' '+a.date).toLowerCase().includes(query));
+    $('appointmentsTable').innerHTML=filtered.map(a=>`<tr><td>${prettyDate(a.date)}</td><td>${prettyTime(a.time)}</td><td>${escapeHtml(a.name)}</td><td>${escapeHtml(a.phone)}</td><td>${escapeHtml(a.service)}</td><td>${statusBadge(a.status)}</td><td>${a.status==='Pending'?`<button class="small-btn" data-confirm="${a.id}">Confirm</button>`:`<button class="small-btn" data-view="${a.id}">View</button>`}</td></tr>`).join('');
+    $('appointmentEmpty').hidden=filtered.length!==0;
+    $('appointmentCount').textContent=filtered.length+' record'+(filtered.length===1?'':'s');
+    $('dashboardAppointments').innerHTML=filtered.slice(0,6).map(a=>`<tr><td>${prettyTime(a.time)}</td><td>${escapeHtml(a.name)}</td><td>${escapeHtml(a.service)}</td><td>${statusBadge(a.status)}</td><td><button class="small-btn" data-view="${a.id}">View</button></td></tr>`).join('');
+    $('patientsTable').innerHTML=patients.filter(p=>(p.name+' '+p.phone+' '+p.service+' '+p.id).toLowerCase().includes(query)).map(p=>`<tr><td>${escapeHtml(p.id)}</td><td>${escapeHtml(p.name)}</td><td>${escapeHtml(p.phone)}</td><td>${escapeHtml(p.service)}</td><td><button class="small-btn" data-patient="${p.id}">View</button></td></tr>`).join('');
+    $('metricAppointments').textContent=appointments.filter(a=>a.date===isoToday).length;
+    $('metricPatients').textContent=patients.length;
+    $('reportTotal').textContent=appointments.length;
+    $('reportConfirmed').textContent=appointments.filter(a=>a.status==='Confirmed').length;
+    $('reportPending').textContent=appointments.filter(a=>a.status==='Pending').length;
+    $('reportPatients').textContent=patients.length;
+  }
+  function go(page){
+    document.querySelectorAll('.page-section').forEach(s=>s.classList.toggle('active',s.id==='page-'+page));
+    document.querySelectorAll('.nav button[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+    $('sidebar').classList.remove('open');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+  document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.goto)));
+  $('menuToggle').addEventListener('click',()=>$('sidebar').classList.toggle('open'));
+  $('globalSearch').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();render();});
+  $('newAppointmentBtn').addEventListener('click',()=>{$('appointmentFormPanel').hidden=false;$('patientName').focus();});
+  $('closeAppointmentForm').addEventListener('click',()=>$('appointmentFormPanel').hidden=true);
+  $('appointmentForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const name=$('patientName').value.trim(),phone=$('patientPhone').value.trim(),service=$('patientService').value,date=$('patientDate').value,time=$('patientTime').value;
+    if(!name||!phone||!service||!date||!time){showToast('Please complete all required fields.');return;}
+    if(date<isoToday){showToast('Choose today or a future date.');return;}
+    const clash=appointments.some(a=>a.date===date&&a.time===time&&a.status!=='Cancelled');
+    if(clash){showToast('That time already has a demo booking. Choose another time.');return;}
+    appointments.push({id:nextId++,date,time,name,phone,service,status:'Pending'});
+    if(!patients.some(p=>p.phone===phone))patients.push({id:'DHC-'+String(patients.length+1).padStart(3,'0'),name,phone,service});
+    $('appointmentForm').reset();$('patientDate').min=isoToday;$('appointmentFormPanel').hidden=true;render();showToast('Demo appointment added. It has not been sent to a real system.');
+  });
+  document.body.addEventListener('click',e=>{
+    const c=e.target.closest('[data-confirm]');
+    const v=e.target.closest('[data-view]');
+    const p=e.target.closest('[data-patient]');
+    if(c){const a=appointments.find(x=>x.id===Number(c.dataset.confirm));if(a){a.status='Confirmed';render();showToast('Demo appointment marked confirmed. No patient notification was sent.');}}
+    if(v){const a=appointments.find(x=>x.id===Number(v.dataset.view));if(a)showToast(`${a.name} · ${a.service} · ${prettyDate(a.date)} ${prettyTime(a.time)} · ${a.status}`);}
+    if(p){const person=patients.find(x=>x.id===p.dataset.patient);if(person)showToast(`${person.name} · ${person.phone} · ${person.service}`);}
+  });
+  $('addPatientQuick').addEventListener('click',()=>{go('patients');showToast('Use New Patient is not connected yet; use New Appointment to add a demo patient.');});
+  $('addPatientBtn').addEventListener('click',()=>{const name=prompt('Enter a fictional demo patient name:');if(!name||!name.trim())return;const phone=prompt('Enter a fictional demo phone number:');if(!phone||!phone.trim())return;patients.push({id:'DHC-'+String(patients.length+1).padStart(3,'0'),name:name.trim(),phone:phone.trim(),service:'Not specified'});render();showToast('Demo patient added to this page session only.');});
+  $('exportBtn').addEventListener('click',()=>{
+    const rows=[['Date','Time','Patient','Phone','Service','Status'],...appointments.map(a=>[a.date,a.time,a.name,a.phone,a.service,a.status])];
+    const csv=rows.map(row=>row.map(cell=>'"'+String(cell).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+    const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='daimon-demo-appointments.csv';a.click();URL.revokeObjectURL(url);showToast('CSV export created from demo data.');
+  });
+  $('settingsForm').addEventListener('submit',e=>{e.preventDefault();$('settingsMessage').textContent='Preview only: '+$('hospitalName').value+' — '+$('hospitalTagline').value+'. Settings are not saved to a server.';});
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1059 @@
+/* ==========================================
+   DAIMON HEALTH CARE
+   PATIENT USER DASHBOARD
+========================================== */
+
+/* 1. GLOBAL SETTINGS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #087f8c;
+    --primary-dark: #05616b;
+    --primary-light: #e6f5f5;
+
+    --gold: #d4af37;
+
+    --background: #f4f7fb;
+    --white: #ffffff;
+
+    --text-dark: #243447;
+    --text-light: #718096;
+
+    --border: #e2e8f0;
+
+    --green: #168653;
+    --red: #d64545;
+
+    --shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 25px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+/* 2. MAIN LAYOUT */
+
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 3. SIDEBAR */
+
+.sidebar {
+    width: 255px;
+    flex-shrink: 0;
+    padding: 25px 18px;
+
+    background: var(--white);
+    border-right: 1px solid var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--primary);
+    font-size: 20px;
+    font-weight: bold;
+
+    margin-bottom: 35px;
+}
+
+.brand small {
+    display: block;
+    color: var(--text-light);
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.brand-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 42px;
+    height: 42px;
+
+    background: var(--primary);
+    color: var(--white);
+
+    border-radius: 12px;
+    font-size: 25px;
+}
+
+.patient-mini-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px 10px;
+    margin-bottom: 25px;
+
+    background: var(--primary-light);
+    border-radius: 12px;
+}
+
+.patient-avatar,
+.small-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--white);
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.patient-mini-profile h3 {
+    font-size: 13px;
+}
+
+.patient-mini-profile p {
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+.menu-heading {
+    margin: 22px 0 10px 10px;
+
+    color: var(--text-light);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 13px;
+
+    color: var(--text-light);
+    font-size: 13px;
+
+    border-radius: 9px;
+    transition: 0.25s ease;
+}
+
+.menu-link > span:first-child {
+    width: 20px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.menu-link:hover,
+.menu-link.active {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.menu-link.active {
+    font-weight: bold;
+}
+
+.notification-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+
+    background: var(--red);
+    color: var(--white);
+
+    border-radius: 50%;
+    font-size: 10px;
+}
+
+.logout-link:hover {
+    color: var(--red);
+    background: #fff0f0;
+}
+
+/* SIDEBAR SUPPORT BOX */
+
+.sidebar-footer {
+    margin-top: 40px;
+    padding: 18px;
+
+    text-align: center;
+    background: #f7fafc;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.help-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 35px;
+    height: 35px;
+    margin: 0 auto 12px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.sidebar-footer h4 {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.sidebar-footer p {
+    color: var(--text-light);
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+
+.sidebar-footer a {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* 4. MAIN CONTENT */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 28px;
+}
+
+/* 5. TOP BAR */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    margin-bottom: 28px;
+}
+
+.date-label {
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.topbar h1 {
+    font-size: 27px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.notification-button {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 42px;
+    height: 42px;
+
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    color: var(--text-dark);
+    font-size: 20px;
+}
+
+.notification-button span {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    width: 8px;
+    height: 8px;
+
+    background: var(--red);
+    border-radius: 50%;
+}
+
+.topbar-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.topbar-profile h3 {
+    font-size: 13px;
+}
+
+.topbar-profile p {
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+/* 6. PAGE SECTIONS */
+
+.dashboard-section {
+    margin-bottom: 35px;
+    scroll-margin-top: 25px;
+}
+
+.page-heading {
+    margin-bottom: 22px;
+}
+
+.page-heading h2 {
+    font-size: 25px;
+    margin-bottom: 7px;
+}
+
+.page-heading > p:last-child {
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+/* 7. WELCOME BANNER */
+
+.welcome-banner {
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    min-height: 225px;
+    padding: 32px;
+
+    background: linear-gradient(
+        120deg,
+        var(--primary-dark),
+        var(--primary)
+    );
+
+    border-radius: 17px;
+    color: var(--white);
+    margin-bottom: 25px;
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 1;
+    max-width: 550px;
+}
+
+.welcome-label {
+    color: #c9f3f2;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.welcome-content h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.welcome-content > p:not(.welcome-label) {
+    color: #e1f4f4;
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+.welcome-symbol {
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 150px;
+    line-height: 1;
+}
+
+/* 8. BUTTONS */
+
+.button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 11px 17px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+
+    transition: background 0.25s ease;
+}
+
+.button-primary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.button-primary:hover:not(:disabled) {
+    background: var(--primary-dark);
+}
+
+.button-gold {
+    background: var(--gold);
+    color: #263238;
+}
+
+.button-gold:hover {
+    background: #e5c653;
+}
+
+/* 9. SUMMARY CARDS */
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    padding: 22px;
+
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+
+    box-shadow: var(--shadow);
+}
+
+.summary-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 43px;
+    height: 43px;
+    margin-bottom: 15px;
+
+    border-radius: 11px;
+    font-size: 20px;
+}
+
+.summary-icon.blue {
+    background: #e8f1ff;
+    color: #3976cf;
+}
+
+.summary-icon.green {
+    background: #e3f7ec;
+    color: var(--green);
+}
+
+.summary-icon.gold {
+    background: #fff4d8;
+    color: #a98213;
+}
+
+.summary-card > p {
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.summary-card h2 {
+    margin: 5px 0 10px;
+    font-size: 29px;
+}
+
+.summary-card > a {
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* 10. CONTENT CARDS */
+
+.content-card {
+    padding: 24px;
+    margin-bottom: 25px;
+
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+
+    box-shadow: var(--shadow);
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.section-heading p {
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.text-link {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* 11. QUICK ACTIONS */
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.quick-action {
+    padding: 20px;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    transition: 0.25s ease;
+}
+
+.quick-action:hover {
+    border-color: var(--primary);
+    background: #f8fdfd;
+    transform: translateY(-3px);
+}
+
+.action-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+    margin-bottom: 14px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.quick-action h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.quick-action p {
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+/* 12. APPOINTMENT TABLE */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 550px;
+}
+
+th,
+td {
+    padding: 15px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+}
+
+th {
+    background: #f8fafc;
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background: #fbfdfd;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.status.confirmed {
+    color: #147647;
+    background: #e1f7e9;
+}
+
+.status.pending {
+    color: #946200;
+    background: #fff3d6;
+}
+
+/* 13. FORMS */
+
+.dashboard-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    color: var(--text-dark);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 13px;
+
+    color: var(--text-dark);
+    background: var(--white);
+
+    border: 1px solid #dce3eb;
+    border-radius: 8px;
+
+    outline: none;
+    font-size: 12px;
+
+    transition: border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(8, 127, 140, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-note {
+    margin-top: 16px;
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+/* 14. PHARMACY */
+
+.pharmacy-notice {
+    padding: 15px 18px;
+    margin-bottom: 22px;
+
+    background: #fff8e6;
+    color: #705617;
+
+    border: 1px solid #f2dfaa;
+    border-radius: 9px;
+
+    font-size: 12px;
+}
+
+.medicine-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.medicine-card {
+    padding: 22px;
+
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+
+    box-shadow: var(--shadow);
+}
+
+.medicine-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 52px;
+    margin-bottom: 15px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    border-radius: 12px;
+    font-size: 25px;
+}
+
+.medicine-category {
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.medicine-card h3 {
+    margin: 8px 0;
+    font-size: 17px;
+}
+
+.medicine-card > p {
+    min-height: 55px;
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.medicine-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    padding-top: 15px;
+    margin-top: 15px;
+
+    border-top: 1px solid var(--border);
+}
+
+.price {
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* 15. EMPTY STATES */
+
+.empty-state {
+    padding: 35px 15px;
+    text-align: center;
+}
+
+.empty-icon {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.empty-state h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    max-width: 450px;
+    margin: 0 auto 20px;
+
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+/* 16. NOTIFICATIONS */
+
+.notification-item {
+    display: flex;
+    gap: 15px;
+
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-dot {
+    width: 10px;
+    height: 10px;
+    margin-top: 7px;
+    flex-shrink: 0;
+
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+.gold-dot {
+    background: var(--gold);
+}
+
+.notification-item h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.notification-item p {
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+.notification-item small {
+    display: block;
+    margin-top: 7px;
+    color: var(--text-light);
+    font-size: 10px;
+}
+
+/* 17. FOOTER */
+
+.dashboard-footer {
+    padding: 22px 10px;
+    text-align: center;
+}
+
+.dashboard-footer p {
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+/* 18. TABLET RESPONSIVENESS */
+
+@media (max-width: 1100px) {
+    .sidebar {
+        width: 225px;
+    }
+
+    .main-content {
+        padding: 22px;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .quick-actions,
+    .medicine-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* 19. SMALL TABLETS AND MOBILE */
+
+@media (max-width: 760px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 18px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+        margin-bottom: 18px;
+    }
+
+    .patient-mini-profile,
+    .sidebar-footer {
+        display: none;
+    }
+
+    .menu-heading {
+        margin-top: 15px;
+    }
+
+    .sidebar-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .menu-link {
+        padding: 9px 10px;
+        font-size: 11px;
+    }
+
+    .menu-link > span:first-child {
+        width: auto;
+        font-size: 14px;
+    }
+
+    .main-content {
+        padding: 18px;
+    }
+
+    .welcome-banner {
+        padding: 25px;
+    }
+
+    .welcome-symbol {
+        font-size: 90px;
+    }
+}
+
+/* 20. MOBILE PHONES */
+
+@media (max-width: 520px) {
+    .main-content {
+        padding: 13px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .topbar h1 {
+        font-size: 23px;
+    }
+
+    .topbar-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .welcome-banner {
+        padding: 22px;
+    }
+
+    .welcome-content h2 {
+        font-size: 24px;
+    }
+
+    .welcome-symbol {
+        display: none;
+    }
+
+    .summary-grid,
+    .quick-actions,
+    .medicine-grid,
+    .dashboard-form {
+        grid-template-columns: 1fr;
+    }
+
+    .content-card {
+        padding: 17px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+    .page-heading h2 {
+        font-size: 22px;
+    }
+
+    .sidebar-menu {
+        gap: 5px;
+    }
+
+    .menu-link {
+        padding: 8px;
+    }
+}
+
+/* 21. ACCESSIBILITY */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+    }
+}

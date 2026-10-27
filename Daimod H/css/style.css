@@ -1,0 +1,656 @@
+
+/* General website styling */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: #17324d;
+    background: #ffffff;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 7%;
+    background: #ffffff;
+    border-bottom: 1px solid #e4edf2;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    background: #0755a0;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo h2 {
+    color: #0755a0;
+    letter-spacing: 2px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+}
+
+.logo p {
+    color: #078b87;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    color: #17324d;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #078b87;
+}
+
+.nav-button {
+    background: #087f8c;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+}
+
+/* Homepage welcome section */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 80px 7%;
+    /* background: #edf7ff; */
+    background-image: url(../image/med-1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-content h1 {
+    color: #0755a0;
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1.15;
+    margin: 15px 0;
+}
+
+.hero-content > p:not(.eyebrow) {
+    max-width: 520px;
+    margin-bottom: 25px;
+}
+
+.eyebrow {
+    color: #078b87;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.button {
+    display: inline-block;
+    background: #087f8c;
+    color: #ffffff;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button:hover,
+.nav-button:hover {
+    background: #0755a0;
+    color: #ffffff;
+}
+
+.buttonForget {
+    display: inline-block;
+    /* background: no; */
+    color: #087f8c;
+    padding: 13px 20px;
+    border: 3px solid #087f8c;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
+
+.buttonForget:hover,
+.nav-button:hover {
+    background: #087f8c;
+    color: #ffffff;
+}
+
+.hero-image {
+    text-align: center;
+    padding: 55px 20px;
+    border-radius: 18px;
+    background: #d9f2ec;
+}
+
+.medical-symbol {
+    color: #087f8c;
+    font-size: 100px;
+    line-height: 1.3;
+}
+
+.hero-image h3 {
+    color: #0755a0;
+}
+
+/* General sections */
+
+.section {
+    padding: 65px 7%;
+}
+
+.section h2 {
+    color: #0755a0;
+    font-size: 30px;
+    margin-bottom: 15px;
+    /* margin-left: 80px; */
+}
+
+.services-section {
+    background: #f7fafc;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.service-card {
+    background: #ffffff;
+    border: 1px solid #e1ebf0;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.service-card span {
+    font-size: 32px;
+    color: #078b87;
+}
+
+.service-card h3 {
+    color: #0755a0;
+    margin: 10px 0;
+}
+
+/* Appointment form */
+
+.appointment-section {
+    background: #edf7ff;
+}
+
+.appointment-section form {
+    max-width: 850px;
+    margin-top: 25px;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 12px;
+}
+@media only screen and ( min-width: 1024px ) {
+    /* .appointment-section p,h2 { margin-left: 200px; } */
+    .appointment-section form {
+        margin-left: 200px;
+    }
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd9e2;
+    border-radius: 6px;
+    font: inherit;
+    background: #ffffff;
+    color: #17324d;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: 2px solid #078b87;
+    outline-offset: 2px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+#form-message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.form-notice {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #526579;
+}
+
+/* Contact section */
+
+.contact-section {
+    background-color: #ffffff;
+}
+.contact-section p {
+    margin: 10px 0;
+}
+.contact-section h2 {
+    margin-left: 80px;
+}
+
+/* Footer */
+
+footer {
+    background: #0755a0;
+    color: #ffffff;
+    padding: 30px 7%;
+    text-align: center;
+}
+
+footer p {
+    margin-top: 8px;
+    font-size: 14px;
+}
+.loginfooter { margin-top: 80px; }
+
+/* Mobile-friendly layout */
+
+@media (max-width: 760px) {
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 50px 6%;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .section {
+        padding: 45px 6%;
+    }
+}
+
+
+
+
+
+
+
+/* =================================
+   DAIMON HEALTH CARE
+   HOSPITAL MANAGEMENT SECTION
+================================= */
+
+/* GENERAL RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #087f8c;
+    --primary-dark: #05616b;
+    --primary-light: #e7f5f5;
+    --gold: #d4af37;
+    --background: #f4f8fb;
+    --white: #ffffff;
+    --text-dark: #243447;
+    --text-light: #718096;
+    --border: #e3eaf0;
+    --shadow: 0 6px 25px rgba(0, 0, 0, 0.07);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* MAIN SECTION */
+
+.management-section {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 55px 35px 25px;
+}
+
+/* SECTION HEADER */
+
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 45px;
+}
+
+.section-label {
+    display: inline-block;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.section-header h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.section-header > p {
+    color: var(--text-light);
+    font-size: 15px;
+}
+
+/* STAFF GRID
+   Five columns = five staff per row
+*/
+
+.management-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 25px 18px;
+    align-items: stretch;
+}
+
+/* STAFF CARD */
+
+.staff-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 25px 12px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+    min-width: 0;
+}
+
+.staff-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary);
+    box-shadow: 0 12px 30px rgba(8, 127, 140, 0.12);
+}
+
+/* ROUND PROFILE IMAGE */
+
+.profile-image {
+    width: 125px;
+    height: 125px;
+    margin: 0 auto 18px;
+    padding: 5px;
+    border: 3px solid var(--gold);
+    border-radius: 50%;
+    background: var(--white);
+    overflow: hidden;
+}
+
+.profile-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* STAFF NAME */
+
+.staff-card h2 {
+    color: var(--text-dark);
+    font-size: 16px;
+    margin-bottom: 7px;
+    overflow-wrap: anywhere;
+    margin: 0;
+}
+
+/* STAFF ROLE */
+
+.staff-role {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 18px;
+    min-height: 40px;
+}
+
+/* CONTACT DETAILS */
+
+.staff-details {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    text-align: left;
+}
+
+.staff-details p {
+    color: var(--text-light);
+    font-size: 11px;
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+}
+
+.staff-details p:last-child {
+    margin-bottom: 0;
+}
+
+/* FOOTER */
+
+.management-footer {
+    margin-top: 45px;
+    padding: 22px 10px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+.management-footer p {
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+/* TABLETS
+   Three staff cards per row
+*/
+
+@media (max-width: 1100px) {
+    .management-section {
+        padding: 40px 25px 20px;
+    }
+
+    .management-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .staff-card {
+        padding: 25px 16px;
+    }
+}
+
+/* MOBILE PHONES
+   Two staff cards per row
+*/
+
+@media (max-width: 650px) {
+    .management-section {
+        padding: 30px 15px 15px;
+    }
+
+    .section-header {
+        margin-bottom: 30px;
+    }
+
+    .section-header h1 {
+        font-size: 27px;
+    }
+
+    .section-header > p {
+        font-size: 14px;
+    }
+
+    .management-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .staff-card {
+        padding: 20px 10px;
+        border-radius: 12px;
+    }
+
+    .profile-image {
+        width: 95px;
+        height: 95px;
+        margin-bottom: 14px;
+    }
+
+    .staff-card h2 {
+        font-size: 14px;
+    }
+
+    .staff-role {
+        font-size: 12px;
+        min-height: 48px;
+    }
+
+    .staff-details p {
+        font-size: 10px;
+    }
+}
+
+/* VERY SMALL PHONES */
+
+@media (max-width: 360px) {
+    .management-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-image {
+        width: 115px;
+        height: 115px;
+    }
+
+    .staff-card h2 {
+        font-size: 16px;
+    }
+
+    .staff-role {
+        min-height: auto;
+    }
+
+    .staff-details {
+        max-width: 230px;
+        margin: 0 auto;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
